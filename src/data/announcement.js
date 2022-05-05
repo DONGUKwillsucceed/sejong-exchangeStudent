@@ -3,10 +3,9 @@ import { db } from '../db/db.js';
 import { LogicalError } from '../error/error.js';
 
 
-
 export async function readAll(){
     try{
-        const {id} = await db.boardTypes.findFirst({
+        const {id} = await db.boardtypes.findFirst({
             where:{
                 type:'announcement'
             },

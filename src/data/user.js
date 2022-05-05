@@ -1,3 +1,4 @@
+import bcrypt, { hash } from 'bcrypt';
 import { v1 } from 'uuid';
 import { db } from '../db/db.js';
 import { LogicalError } from '../error/error.js';
@@ -39,11 +40,13 @@ export async function postOne(body){
     try{
         const {userID, password, userName, nickName, isAuth} = body;
         const id = v1();
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(password,salt);
         const queryResult = await db.users.create({
             data:{
                 id,
                 userID,
-                password,
+                password : hashed,
                 userName,
                 nickName,
                 isAuth
@@ -104,3 +107,31 @@ export async function removeOne(param){
     }
     
 }
+
+export async function checkOut(userID, password){
+    try{
+        const queryResult = await db.users.findFirst({
+            where:{
+                userID
+            },
+            select:{
+                userName:true,
+                password:true,
+                isAuth:true
+            }
+        })
+        const hashed = queryResult.password;
+        const result = await bcrypt.compare(password, hashed);
+        if(result){
+            const userName = queryResult.userName;
+            const isAuth = queryResult.isAuth;
+            return {userName, isAuth};
+        }
+        else{
+            return ;
+        }
+    }catch(e){
+        console.log(e);
+    }
+}
+

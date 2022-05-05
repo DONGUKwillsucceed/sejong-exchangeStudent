@@ -1,4 +1,26 @@
-import * as userRepository from '../data/user.js'
+import jwt from 'jsonwebtoken';
+import * as userRepository from '../data/user.js';
+function tokenGenerater(userName, isAdmin){
+    const accessToken = jwt.sign({
+        userName,
+        isAdmin
+    },
+    'superSecretKey',
+    {
+        expiresIn: '1h'
+    }
+    )
+    const refreshToken = jwt.sign({
+        userName,
+        isAdmin
+    },
+    'superSecretKeyForRefresh',
+    {
+        expiresIn: '14d'
+    }
+    );
+    return {accessToken, refreshToken};
+}
 
 export async function getAdata(req, res){
     try{
@@ -61,4 +83,16 @@ export async function removeData(req, res){
         res.status(500).send(err.toJSON ? err.toJSON() : null)
     }
     
+}
+
+export async function signin(req, res){
+    try{
+        console.log('isIn?');
+        const {userID, password} = req.body;
+        const {userName, isAuth} = await userRepository.checkOut(userID, password);
+        const token = tokenGenerater(userName, isAuth);
+        res.status(200).json({userName, isAuth, token});
+    }catch(err){
+        res.status(404).send("ID or Password is wrong!!");
+    }
 }
