@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model boardtypes {
+  id      String  @id @db.VarChar(64)
+  country String? @db.VarChar(64)
+  type    String  @db.VarChar(64)
+}
+
+model comments {
+  id          String   @id @db.VarChar(64)
+  postings_id String   @db.VarChar(64)
+  author      String   @db.VarChar(64)
+  context     String   @db.VarChar(45)
+  createdAt   DateTime @db.DateTime(0)
+  updatedAt   DateTime @db.DateTime(0)
+}
+
+model postings {
+  id            String   @id @db.VarChar(64)
+  school_id     String?  @db.VarChar(64)
+  boardtypes_id String   @db.VarChar(64)
+  title         String   @db.VarChar(64)
+  author        String   @db.VarChar(64)
+  context       String   @db.Text
+  createdAt     DateTime @db.DateTime(0)
+  updatedAt     DateTime @db.DateTime(0)
+
+  @@index([author], map: "Postings_author_idx")
+  @@index([title], map: "Postings_title_idx")
+}
+
+model school {
+  id            String @id @db.VarChar(64)
+  boardtypes_id String @db.VarChar(64)
+  schoolName    String @db.VarChar(64)
+
+  @@index([schoolName], map: "School_schoolName_idx")
+}
+
+model users {
+  id       String  @id @db.VarChar(64)
+  userID   String  @db.VarChar(64)
+  password String  @db.VarChar(64)
+  userName String  @db.VarChar(64)
+  nickName String  @db.VarChar(64)
+  isAuth   Boolean @default(false)
+}
