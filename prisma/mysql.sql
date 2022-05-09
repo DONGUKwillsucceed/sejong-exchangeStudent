@@ -1,8 +1,8 @@
 -- CreateTable
 CREATE TABLE `boardtypes` (
     `id` VARCHAR(64) NOT NULL,
-    `country` VARCHAR(64) NULL,
-    `type` VARCHAR(64) NOT NULL,
+    `country` VARCHAR(64) NULL,    -- china
+    `type` VARCHAR(64) NOT NULL,   -- community
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

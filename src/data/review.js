@@ -1,10 +1,10 @@
-// import { v1 } from 'uuid';
+import { v1 } from 'uuid';
 import db from '../db/db.js';
 import { LogicalError } from '../error/error.js';
 
 export async function readAll(_country){
   try{
-      const {id} = await db.boardtypes.findFirst({      // boardType이 맞으면 바꾸도록 하겠습니다.
+      const {id} = await db.boardtypes.findFirst({
           where:{
               country:_country,
               type:'review'
@@ -59,4 +59,92 @@ export async function readOne(param){
   }catch(e){
       console.log(e);
   }
+}
+
+export async function postOne(body,_country){
+  try{
+  const {title, author, context} = body;
+  const bId = reviewCountryToBId(_country);
+  const createdAt = new Date();
+  const updatedAt = new Date();
+  const id = v1();
+  const queryResult = await db.postings.create({
+      data:{
+          id,
+          title,
+          boardtypes_id: bId,
+          author,
+          context,
+          createdAt,
+          updatedAt,
+          school_id : null
+      }
+  });
+
+  return queryResult;
+  }catch(e){
+      console.log(e);
+  }
+}
+
+export async function putOne(param, body){
+  try{
+      const {title, author, context} = body;
+      const updatedAt = new Date();
+      const queryResult = await db.postings.update({
+          where:{
+              id:param
+          },
+          data:{
+              title,
+              author,
+              context,
+              updatedAt
+          }
+      });
+
+      if(!queryResult){
+          throw new LogicalError("LogicalError occured!!!!");
+      }
+      return queryResult;
+  }catch(e){
+      console.log(e);
+  }
+}
+
+export async function removeOne(param){
+  try{
+
+      const queryResult = db.postings.delete({
+          where:{
+              id:param
+          }
+      })
+
+      if(!queryResult){
+          throw new LogicalError("LogicalError occured!!!!");
+      }
+      return queryResult;
+  }catch(e){
+      console.log(e);
+  }
+}
+
+function reviewCountryToBId(country) {
+  let result;
+  switch(country) {
+  case 'america' :
+    result = 'amre';
+    break;
+  case 'asia' :
+    result = 'asre';
+    break;
+  case 'china' :
+    result = 'chre';
+    break;
+  case 'europe' :
+    result = 'eure';
+    break;
+  }
+  return result;
 }

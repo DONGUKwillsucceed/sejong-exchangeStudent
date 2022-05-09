@@ -4,8 +4,8 @@ const route = express.Router();
 
 route.get('/:country/:id', communityController.getAdata);
 route.get('/:country', communityController.getList);
-// route.post('/america/', );
-// route.put('/america/:id', );
-// route.delete('/america/:id', );
+route.post('/:country', communityController.postData);     //id 뺄게요
+route.put('/:country/:id', communityController.putData);   // country 필요없긴 함
+route.delete('/:country/:id', communityController.removeData); // 얘도 country 필요없긴 함
 
 export default route;
