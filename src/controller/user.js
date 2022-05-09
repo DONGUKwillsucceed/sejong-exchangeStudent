@@ -1,20 +1,23 @@
 import jwt from 'jsonwebtoken';
+import { config } from '../../config.js';
 import * as userRepository from '../data/user.js';
-function tokenGenerater(userName, isAdmin){
+function tokenGenerater(userName, ID,isAdmin){
     const accessToken = jwt.sign({
         userName,
+        ID,
         isAdmin
     },
-    'superSecretKey',
+    config.jwt.accessToken,
     {
         expiresIn: '1h'
     }
     )
     const refreshToken = jwt.sign({
         userName,
+        ID,
         isAdmin
     },
-    'superSecretKeyForRefresh',
+    config.jwt.refreshToken,
     {
         expiresIn: '14d'
     }
@@ -89,10 +92,39 @@ export async function signin(req, res){
     try{
         console.log('isIn?');
         const {userID, password} = req.body;
-        const {userName, isAuth} = await userRepository.checkOut(userID, password);
-        const token = tokenGenerater(userName, isAuth);
+        const response = await userRepository.checkOut(userID, password);
+        const {userName, isAuth} = response;
+        const ID = response.userID;
+        const token = tokenGenerater(userName, ID, isAuth);
+        console.log(token);
         res.status(200).json({userName, isAuth, token});
     }catch(err){
         res.status(404).send("ID or Password is wrong!!");
+    }
+}
+
+export async function refresh(req, res){
+    try{
+        const {refreshToken} = req.body;
+        if(!refreshToken){
+            res.sendStatus(401);
+        }
+        jwt.verify(
+            refreshToken,
+            config.jwt.refreshToken,
+            (error, decoded)=>{
+                if(error){
+                    res.sendStatus(401);
+                }
+                else{
+                    console.log(decoded);
+                    const {userID, isAdmin, userName} = decoded;
+                    const {accessToken} = tokenGenerater(userName, userID, isAdmin);
+                    res.status(200).json({accessToken});
+                }
+            }
+        )
+    }catch(err){
+        res.status(500).send(err.toJSON ? err.toJSON() : null);
     }
 }

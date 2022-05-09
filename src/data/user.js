@@ -1,5 +1,6 @@
 import bcrypt, { hash } from 'bcrypt';
 import { v1 } from 'uuid';
+import { config } from '../../config.js';
 import { db } from '../db/db.js';
 import { LogicalError } from '../error/error.js';
 
@@ -40,7 +41,8 @@ export async function postOne(body){
     try{
         const {userID, password, userName, nickName, isAuth} = body;
         const id = v1();
-        const salt = await bcrypt.genSalt(10);
+        const hashnum = parseInt(config.hash.rounds)
+        const salt = await bcrypt.genSalt(hashnum);
         const hashed = await bcrypt.hash(password,salt);
         const queryResult = await db.users.create({
             data:{
@@ -116,6 +118,7 @@ export async function checkOut(userID, password){
             },
             select:{
                 userName:true,
+                userID:true,
                 password:true,
                 isAuth:true
             }
@@ -123,9 +126,26 @@ export async function checkOut(userID, password){
         const hashed = queryResult.password;
         const result = await bcrypt.compare(password, hashed);
         if(result){
-            const userName = queryResult.userName;
-            const isAuth = queryResult.isAuth;
-            return {userName, isAuth};
+            const {userName, userID, isAuth} = queryResult;
+            return {userName, userID,isAuth};
+        }
+        else{
+            return ;
+        }
+    }catch(e){
+        console.log(e);
+    }
+}
+
+export async function isUser(userID){
+    try{
+        const queryResult = await db.users.findFirst({
+            where:{
+                userID
+            }
+        });
+        if(queryResult){
+            return queryResult;
         }
         else{
             return ;
