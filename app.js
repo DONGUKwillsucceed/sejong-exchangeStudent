@@ -7,6 +7,7 @@ import userRoute from './src/routes/user.js';
 import announcementRoute from './src/routes/announcement.js';
 import qnaRoute from './src/routes/qna.js';
 import signinRoute from './src/routes/signin.js'
+import commentRoute from './src/routes/commentRoute.js'
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/signin', signinRoute);
 app.use('/user', userRoute);
 app.use('/announcement', announcementRoute);
 app.use('/qna', qnaRoute);
+app.use('/comment', commentRoute);
 
 
 
