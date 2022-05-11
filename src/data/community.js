@@ -64,7 +64,15 @@ export async function readOne(param){
 export async function postOne(body,_country){
   try{
   const {title, author, context} = body;
-  const bId = communityCountryToBId(_country);
+  const {id:bId} = await db.boardtypes.findFirst({
+      where:{
+          country: _country,
+          type: community
+      },
+      select:{
+          id:true
+      }
+  });      
   const createdAt = new Date();
   const updatedAt = new Date();
   const id = v1();
@@ -128,23 +136,4 @@ export async function removeOne(param){
   }catch(e){
       console.log(e);
   }
-}
-
-function communityCountryToBId(country) {
-  let result;
-  switch(country) {
-  case 'america' :
-    result = 'amco';
-    break;
-  case 'asia' :
-    result = 'asco';
-    break;
-  case 'china' :
-    result = 'chco';
-    break;
-  case 'europe' :
-    result = 'euco';
-    break;
-  }
-  return result;
 }

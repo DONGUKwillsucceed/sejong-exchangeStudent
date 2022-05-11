@@ -2,41 +2,6 @@ import { v1 } from 'uuid';
 import db from '../db/db.js';
 import { LogicalError } from '../error/error.js';
 
-export async function readAll(_country){
-  try{
-      const {id} = await db.boardtypes.findFirst({
-          where:{
-              country:_country,
-              type:'review'
-          },
-          select:{
-              id:true
-          }
-      });
-      const queryResult = await db.postings.findMany({
-          where:{
-              boardtypes_id:id
-          },
-          select:{
-              id:true,
-              title:true,
-              author:true,
-              createdAt:true
-          }
-      });
-      
-      if(!queryResult){
-          console.log('error');
-          throw new LogicalError("LogicalError occured!!!!");
-      }
-  
-      return queryResult;
-  }catch(e){
-      console.log(e);
-  }
-  
-}
-
 export async function readOne(param){
   try{
       const queryResult = db.postings.findUnique({
@@ -61,21 +26,98 @@ export async function readOne(param){
   }
 }
 
-export async function postOne(body,_country){
+export async function readSchoolAll(_country){
+  try{
+      const {id} = await db.boardtypes.findFirst({
+          where:{
+              country:_country,
+              type:'document'
+          },
+          select:{
+              id:true
+          }
+      });
+      const queryResult = await db.school.findMany({
+          where:{
+              boardtypes_id:id
+          },
+          select:{
+              id:true,
+              schoolName:true,
+          }
+      });
+      
+      if(!queryResult){
+          console.log('error');
+          throw new LogicalError("LogicalError occured!!!!");
+      }
+  
+      return queryResult;
+  }catch(e){
+      console.log(e);
+  }
+  
+}
+
+export async function readPostingAll(_country, _school){
+  try{
+      console.log('뭐가문제지');
+      const {id} = await db.school.findFirst({
+          where:{
+              schoolName:_school
+          },
+          select:{
+              id:true
+          }
+      });
+      const queryResult = await db.postings.findMany({
+          where:{
+              school_id:id
+          },
+          select:{
+              id:true,
+              title:true,
+              author:true,
+              createdAt:true
+          }
+      });
+      
+      if(!queryResult){
+          console.log('error');
+          throw new LogicalError("LogicalError occured!!!!");
+      }
+  
+      return queryResult;
+  }catch(e){
+      console.log(e);
+  }
+  
+}
+
+export async function postOne(body,_country,_school){           // 해야되지 않나?
   try{
   const {title, author, context} = body;
-  const {id:bId} = await db.boardtypes.findFirst({
+  const createdAt = new Date();
+  const updatedAt = new Date();
+  const id = v1();
+  const {id : bId} = await db.boardtypes.findFirst({
       where:{
           country: _country,
-          type: review
+          type: 'document'
       },
       select:{
           id:true
       }
-  });      
-  const createdAt = new Date();
-  const updatedAt = new Date();
-  const id = v1();
+  }); 
+  const {id : sId} = await db.school.findFirst({
+      where:{
+          boardtypes_id: bId,
+          schoolName:_school
+      },
+      select:{
+          id:true
+      }
+  });
   const queryResult = await db.postings.create({
       data:{
           id,
@@ -85,7 +127,7 @@ export async function postOne(body,_country){
           context,
           createdAt,
           updatedAt,
-          school_id : null
+          school_id : sId
       }
   });
 
