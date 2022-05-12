@@ -67,7 +67,7 @@ export async function postOne(body,_country){
   const {id:bId} = await db.boardtypes.findFirst({
       where:{
           country: _country,
-          type: review
+          type: 'review'
       },
       select:{
           id:true

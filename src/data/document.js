@@ -61,7 +61,6 @@ export async function readSchoolAll(_country){
 
 export async function readPostingAll(_country, _school){
   try{
-      console.log('뭐가문제지');
       const {id} = await db.school.findFirst({
           where:{
               schoolName:_school
