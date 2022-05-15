@@ -68,7 +68,7 @@ export async function postOne(body){
             data:{
                 id,
                 title,
-                boardtypes_id: 'qrst',
+                boardtypes_id: 'qna',
                 author,
                 context,
                 createdAt,
