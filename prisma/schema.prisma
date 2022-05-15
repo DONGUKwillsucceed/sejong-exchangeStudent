@@ -31,9 +31,12 @@ model postings {
   context       String   @db.Text
   createdAt     DateTime @db.DateTime(0)
   updatedAt     DateTime @db.DateTime(0)
+  user_id       String   @db.VarChar(64)
+  users         users    @relation(fields: [user_id], references: [id])
 
   @@index([author], map: "Postings_author_idx")
   @@index([title], map: "Postings_title_idx")
+  @@index([user_id], map: "postings_user_id_fkey")
 }
 
 model school {
@@ -45,10 +48,11 @@ model school {
 }
 
 model users {
-  id       String  @id @db.VarChar(64)
-  userID   String  @db.VarChar(64)
-  password String  @db.VarChar(64)
-  userName String  @db.VarChar(64)
-  nickName String  @db.VarChar(64)
-  isAuth   Boolean @default(false)
+  id       String     @id @db.VarChar(64)
+  userID   String     @db.VarChar(64)
+  password String     @db.VarChar(64)
+  userName String     @db.VarChar(64)
+  nickName String     @db.VarChar(64)
+  isAuth   Boolean    @default(false)
+  postings postings[]
 }
