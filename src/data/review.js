@@ -73,6 +73,14 @@ export async function postOne(body,_country){
           id:true
       }
   });      
+  const {id:uId} = await db.users.findFirst({
+    where:{
+        type: 'nickName'
+    },
+    select:{
+        id:true
+    }
+  });      
   const createdAt = new Date();
   const updatedAt = new Date();
   const id = v1();
@@ -85,7 +93,8 @@ export async function postOne(body,_country){
           context,
           createdAt,
           updatedAt,
-          school_id : null
+          school_id : null,
+          user_id: uId
       }
   });
 
@@ -99,6 +108,14 @@ export async function putOne(param, body){
   try{
       const {title, author, context} = body;
       const updatedAt = new Date();
+      const {id:uId} = await db.users.findFirst({
+        where:{
+            type: 'nickName'
+        },
+        select:{
+            id:true
+        }
+      });
       const queryResult = await db.postings.update({
           where:{
               id:param
@@ -107,7 +124,8 @@ export async function putOne(param, body){
               title,
               author,
               context,
-              updatedAt
+              updatedAt,
+              user_id: uId
           }
       });
 
