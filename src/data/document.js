@@ -93,7 +93,7 @@ export async function readPostingAll(_country, _school){
   
 }
 
-export async function postOne(body,_country,_school){           // 해야되지 않나?
+export async function postOne(body,_country,_school){
   try{
   const {title, author, context, user_id} = body;
   const createdAt = new Date();
