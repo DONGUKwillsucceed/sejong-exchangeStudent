@@ -1,5 +1,5 @@
 import { v1 } from 'uuid';
-import db from '../db/db.js';
+import { db } from '../db/db.js';
 import { LogicalError } from '../error/error.js';
 
 export async function readAll(_country){
@@ -63,7 +63,7 @@ export async function readOne(param){
 
 export async function postOne(body,_country){
   try{
-  const {title, author, context} = body;
+  const {title, author, context, user_id} = body;
   const {id:bId} = await db.boardtypes.findFirst({
       where:{
           country: _country,
@@ -72,15 +72,7 @@ export async function postOne(body,_country){
       select:{
           id:true
       }
-  });      
-  const {id:uId} = await db.users.findFirst({
-    where:{
-        type: 'nickName'
-    },
-    select:{
-        id:true
-    }
-  });      
+  });          
   const createdAt = new Date();
   const updatedAt = new Date();
   const id = v1();
@@ -94,7 +86,7 @@ export async function postOne(body,_country){
           createdAt,
           updatedAt,
           school_id : null,
-          user_id: uId
+          user_id
       }
   });
 
@@ -108,14 +100,6 @@ export async function putOne(param, body){
   try{
       const {title, author, context} = body;
       const updatedAt = new Date();
-      const {id:uId} = await db.users.findFirst({
-        where:{
-            type: 'nickName'
-        },
-        select:{
-            id:true
-        }
-      });
       const queryResult = await db.postings.update({
           where:{
               id:param
@@ -124,8 +108,7 @@ export async function putOne(param, body){
               title,
               author,
               context,
-              updatedAt,
-              user_id: uId
+              updatedAt
           }
       });
 
