@@ -1,0 +1,203 @@
+.header4 {
+    display: flex;
+    width: 95vw;
+    /* calc(100vw - 100px); */
+    height: 90px;
+    margin-top: 32px;
+    justify-content: space-between;
+    background-color: #fafafa;
+}
+
+.logoSet4 {
+    margin-left: 100px;
+    font-size: 32px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
+.logo4 {
+    font-size: 32px;
+}
+
+/* .header h1 {
+    margin-right: 160px;
+    padding-top: 32px;
+} */
+.leftCompo4 {
+    display: flex;
+}
+
+.headNav4 {
+    width: 60%;
+    padding-top: 32px;
+    display: flex;
+    height: 70px;
+    border-bottom: solid 1px #ac2c47;
+    justify-content: space-between;
+}
+
+.nav4 {
+    width: 40vw;
+}
+
+.ul4 {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.header4 li {
+    list-style: none;
+}
+
+.header4 li:hover {
+    color: #ac2c47;
+    cursor: pointer;
+}
+
+.list14 {
+    width: 10vw;
+}
+
+.list24 {
+    width: 12vw;
+}
+
+.list34 {
+    width: 13vw;
+}
+
+.list44 {
+    width: 7vw;
+}
+
+.userName4 {
+    margin-right: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.logoutBtn,
+.myPostingsBtn {
+    background-color: white;
+    border: 1px solid #ac2c47;
+    cursor: pointer;
+    height: 32px;
+}
+
+.loginBtn4 {
+    background-color: #fafafa;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-right: 16px;
+    border: 0;
+}
+
+.loginBtn4:hover {
+    color: #ac2c47;
+}
+
+.userBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.userModal {
+    width: 150px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    right: 100px;
+    top: 112px;
+}
+
+
+
+
+@media (max-width:1001px) {
+    .header4 {
+        margin-top: 20px;
+    }
+
+    .headNav4{
+        width:70%;
+    }
+    .logoSet4 {
+        margin-left: 7vw;
+        margin-top: 2vh;
+        font-size: 3vw;
+    }
+
+    /* .list14 {
+        width: 15vw;
+    }
+    
+    .list24 {
+        width: 15vw;
+    }
+    
+    .list34 {
+        width: 15vw;
+    }
+    
+    .list44 {
+        width: 15vw;
+    } */
+
+    .nav4 {
+        font-size: 1.75vw;
+        width:50w;
+    }
+
+    .userName4 {
+        font-size: 1.75vw;
+    }
+
+    .loginBtn4 {
+        font-size: 1.6vw;
+    }
+
+    .userModal {
+        width: 10vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        right: 30px;
+        top: 112px;
+    }
+
+    .logoutBtn,
+.myPostingsBtn {
+    font-size: 1.3vw;
+}
+}
+
+
+/* @media (max-width:580px) {
+    .header4{
+        margin-top:20px;
+        
+    }
+    .logoSet4{
+        margin-left:30px;
+        font-size: 15px;
+    }
+} */
+
+
+
+/* @media (max-height: 700px) {
+    .header {
+        padding-top: 0;
+    }
+} */

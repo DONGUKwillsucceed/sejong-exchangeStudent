@@ -1,0 +1,138 @@
+.header7 {
+    border-bottom: solid 1px #ac2c47;
+
+}
+
+.container17{
+    width:100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: calc(100vh - 164px);
+}
+.title7{
+    display: flex;
+    justify-content: space-between;
+}
+.titleBtn7{
+    display: flex;
+    align-items: center;
+}
+.postContainer7{
+    width:100%;
+}
+
+.postInfo7 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.postInfo7 p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.context7 {
+    min-height: 300px;
+    border-bottom: solid 1px #ac2c47;
+}
+.date7 {
+    font-size: 12px;
+    padding-top: 8px;
+}
+.date7 p {
+    margin-bottom: 0;
+}
+.commentzone7 {
+    padding-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    margin-top: 8px;
+
+}
+.comment7 p {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.userInfo7 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.comment_set7{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.commentSet7 {
+    width: 100%;
+    height: 10vh;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ac2c47;
+    display: flex;
+    justify-content: space-between;
+    margin-top:20px;
+}
+.commentInfor7 {
+    margin-left: 16px;
+    padding-top: 12px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.commentEtc7 {
+    margin-right: 16px;
+    padding-bottom: 8px;
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.commentInput7 {
+    height: 5vh;
+}
+
+
+.commentBtn7{
+    border:0;
+    background-color: white;
+    width:50px;
+    height:30px;
+    color:black;
+    border-radius:5px;
+    padding:5px;
+}
+
+.commentBtn7:hover{
+    color:#ac2c47
+}
+
+.updateBtn{
+    border:0;
+    background-color: #ac2c47;
+    color:white;
+    width:50px;
+    height:30px;
+    padding:5px;
+    border-radius: 5px;
+    margin-left:10px;
+    margin-bottom:5px;
+}
+
+.updateBtn:hover{
+    opacity: 0.7;
+}
+
+
+.deleteBtn{
+    width:50px;
+    height:30px;
+    border:0;
+    background-color: inherit;
+    text-align: auto;
+}
+
+.deleteBtn:hover{
+    color:#ac2c47;
+}

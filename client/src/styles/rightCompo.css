@@ -1,0 +1,145 @@
+.rightCompo8 {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
+.rightNav8 {
+    width: 100%;
+    margin-bottom: 32px;
+}
+.title8,
+.title18 {
+    font-size: 20px;
+    font-weight: 600;
+}
+.title8, .header8 {
+    border-bottom: solid 1px #ac2c47;
+}
+.header8 {
+    display: flex;
+    justify-content: space-between;
+}
+.title8:hover {
+    color: #ac2c47;
+    cursor: pointer;
+}
+.rightNav8 ul {
+    display: block;
+    padding-left: 16px;
+}
+.rightNav8 li {
+    margin-top: 6px;
+    list-style: none;
+}
+.rightNav8 li:hover{
+    color: #ac2c47;
+    cursor: pointer;
+}
+.posting8 {
+    display: flex;
+    justify-content: space-between;
+}
+.posting8 p {
+    margin-top: 0;
+}
+.writer8 {
+    display: flex;
+}
+.writer8 p {
+    margin-right: 16px;
+    margin-top: 0;
+    font-size: 12px;
+}
+
+.container8 {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navigator8 {
+    text-align: center;
+}
+.writeBtn8 {
+    /* position: absolute; */
+    font-size: 15px;
+    color: #ac2c47;
+    /* top: 150px;
+    right: 535px; */
+    cursor: pointer;
+    padding-top: 12px;
+}
+.modal8 {
+    position: absolute;
+    top: 0;
+    right: 200px;
+}
+
+
+@media (max-width:1000px) {
+    .rightCompo8{
+        width:60vw;
+    }
+}
+
+
+@media (max-height: 812px) {
+    .title8 {
+        font-size: 16px;
+    }
+    .list8 {
+        font-size: 12px;
+    }
+}
+/* @media (max-height: 700px) {
+    #listSet4 {
+        display: none;
+    }
+}
+@media (max-height: 620px) {
+    #listSet3 {
+        display: none;
+    }
+}
+@media (max-height: 540px) {
+    #listSet2 {
+        display: none;
+    }
+}
+@media (max-height: 450px) {
+    #listSet1 {
+        display: none;
+    }
+} */
+/* 
+@media (max-width: 1220px) {
+    .rightCompo {
+        width: 200px;
+    }
+} */
+/* @media (max-width: 1145px) {
+    .rightCompo {
+        display: none;
+    }
+} */
+@media (max-width: 750px) {
+    .postingTitle8 {
+        font-size: 14px;
+    }
+    .writer8 p {
+        font-size: 8px;
+    }
+}
+@media (max-width: 561px) {
+    .postingTitle8 {
+        font-size: 12px;
+    }
+    .writer8 p {
+        font-size: 6px;
+    }
+}
+
+.boxbox{
+    width:100%;
+}

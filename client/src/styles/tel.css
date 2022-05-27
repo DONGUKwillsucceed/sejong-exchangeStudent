@@ -1,0 +1,24 @@
+.pContainer{
+    padding-left: 20px;
+}
+.infor1{
+    margin-bottom: 40px;
+}
+.font_color{
+    color: blue;
+    font-size: 14px;
+}
+.affairs{
+    display: flex;
+}
+.affairs_tag{
+    display: flex;
+    flex-direction: row;
+}
+.affairs p, .affairs_tag p{
+    margin-left: 8px;
+}
+#affairs1, #affair2 {
+    padding-top: 18px;
+    margin-left: 8px;
+}
