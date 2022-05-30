@@ -1,0 +1,161 @@
+.smallheader {
+    display: flex;
+    width: calc(100vw - 100px);
+    height: 90px;
+    margin-top: 32px;
+    justify-content: space-between;
+    background-color: #fafafa;
+}
+.logoFnt {
+    margin-left:0px;;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* .leftCompo4 {
+    display: flex;
+} */
+
+.headNav4 {
+    width: 60%;
+    padding-top: 32px;
+    display: flex;
+    height: 70px;
+    border-bottom: solid 1px #ac2c47;
+    justify-content: space-between;
+}
+.nav4 {
+    width: 40vw;
+}
+.ul4 {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.headNav4 li {
+    list-style: none;
+}
+.headNav4 li:hover {
+    color: #ac2c47;
+    cursor: pointer;
+}
+
+.list14 {
+    width: 10vw;
+}
+.list24 {
+    width: 12vw;
+}
+.list34 {
+    width: 12vw;
+}
+.list44 {
+    width: 6vw;
+}
+
+.small{
+    font-size:smaller;
+}
+
+.userName4 {
+    margin-right: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+.logoutBtn, .myPostingsBtn {
+    background-color: white;
+    border:1px solid #ac2c47;
+    cursor: pointer;
+    height: 32px;
+}
+.loginBtn4{
+    background-color: #fafafa;
+    border-radius:4px;
+    padding:5px;
+    margin-bottom:20px;
+    margin-right: 16px;
+    border:0;
+}
+
+.loginBtn4:hover{
+    color:#ac2c47;
+}
+
+.userBox{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.userModal{
+    width:150px;
+    height:60px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    right: 100px;
+    top: 112px;
+}
+
+@media (max-width: 1020px) {
+    .nav4 .list {
+        margin-right: 0px;
+    }
+}
+@media (max-width: 1003px) {
+    .search4 {
+        display: none;
+    }
+    /* .headNav {
+        justify-content: flex-end;
+    } */
+}
+@media (max-width: 875px){
+    /* .headNav4{
+        width: 40vw;
+    } */
+    .leftCompo4{
+        display: none;
+    }
+}
+@media(max-width: 777px){
+    .logoSet4{
+        margin-left: 20px;
+    }
+    .header4{
+        justify-content: start;
+    }
+}
+@media (max-width: 680px) {
+    .leftCompo4 {
+        display: none;
+    }
+    .nav4 {
+        width: 440px;
+        font-size: 14px;
+    }
+    .logo4 {
+        font-size: 24px;
+    }
+}
+@media (max-width: 550px) {
+    .logo4 {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .nav4 {
+        width: 400px;
+        font-size: 12px;
+    }
+}
+/* @media (max-height: 700px) {
+    .header {
+        padding-top: 0;
+    }
+} */
+

@@ -1,0 +1,192 @@
+.login{
+    /* background-image: url('../../public/login_bg.png'); */
+    height: 500px;
+    width:600px;
+    background-size:cover;
+    background-position: center;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-family: 'Noto Sans KR';
+    border:1px solid #666666;
+    border-radius:6px;
+    margin-top:40px;
+}
+
+.loginbackground{
+    width: 100%;
+    height: 220px;
+    background-size:cover;
+    background-position: center;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.logo2{
+    margin-top:30px;
+    border:0px;
+}
+/* 
+.logo2{
+    background: url('../../public/login_logo.png') 50% 50% no-repeat;
+    width: 150px;
+    height: 36px;
+    margin-top:30px;
+    border:0px;
+    font-size:36px;
+    //원래거
+}
+ */
+.title2{
+    font-size: 35px;
+    font-weight: 800;
+    color:white;
+    padding-bottom: 18px;
+    padding-top:35px;
+    margin:0;
+}
+
+.loginText{
+    color:#666666;
+    font-size:14px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top:15px;
+}
+
+.yellowText{
+    color:#ac2c47;
+}
+
+.loginBox{
+    /* background-color: #eeede3; */
+    
+    width: 460px;
+    padding: 30px 40px;
+    margin-top:30px;
+    border-radius: 5px;
+    border:1px solid #666666;
+}
+
+.inputBox2{
+    margin-bottom:15px;
+}
+
+.inputBox2 input{
+    width: 380px;
+    height: 40px;
+    padding-bottom: 5px;
+    background-color: #eeede3;
+    border:0;
+    border-radius:5px;
+}
+
+.inputBox2 p {
+    font-size:14px;
+    color:#666666;
+    text-align: left;
+    padding-bottom:5px;
+    margin:0;
+    font-weight: 600;
+}
+
+.loginButton2{
+    width:380px;
+    background-color:#ac2c47;
+    margin-top:15px;
+    color:white;
+    height:50px;
+    border-radius:5px;
+    font-size:18px;
+    font-weight: 600;
+    border:0;
+    box-shadow: 2px 2px 2px #8e8a8a;
+}
+
+.loginButton2:hover{
+    opacity: 0.8;
+}
+
+.findAccount{
+    color: rgb(102,102,102);
+    font-size:11px;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 500;
+}
+
+.findAccount a:hover{
+    opacity:0.7;
+}
+
+.noti{
+    display: block;
+    float: left;
+    font-size:13px;
+    width:460px;
+    font-family: 'Noto Sans KR';
+    padding-top:6px;
+    letter-spacing: -1px;
+    color:#666666;
+    list-style:none;
+    padding:0;
+}
+
+.notiList{
+    display:block;
+    float:left;
+    font-size:13px;
+    padding-top:6px;
+    color:#222222;
+    list-style: none;
+    padding-left:10px;
+}
+
+.noHover{
+    margin-bottom:3px;
+}
+.noHover:hover{
+    color:#555555;
+}
+
+.footer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:12px;
+}
+
+.link2 {
+    display:flex;
+    justify-content: center;
+    padding-top:12px;
+    padding-bottom:12px;
+}
+
+.item2 {
+    margin-right:20px;
+    list-style: none;
+}
+
+.item2:hover{
+    color:#555555;
+}
+
+.item22{
+    list-style:disc;
+    margin-right:20px;
+}
+
+.item22:hover{
+    color:#555555;
+}
+
+.copyright{
+    text-align:center;
+    font-weight: 500;
+    color:#999999;
+    padding-top:6px;
+}
