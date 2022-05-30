@@ -21,6 +21,7 @@ export default function Document(props) {
     let [context, setContext] = useState('');
     let [createdAt, setCreatedAt] = useState('');
     let [user_id, setUser_id] = useState('');
+    let [count, setCount] = useState(0);
 
     let posts = [];
 
@@ -30,11 +31,11 @@ export default function Document(props) {
             <Switch>
 
                 <Route path={`${match.path}/:country/:school/:postId/update`}>
-                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context}/>
+                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context} count={count} setCount={setCount}/>
                 </Route>
 
                 <Route path={'*/write'}>
-                    <MyEditor fetchURL={fetchURL} user={props.user}/>
+                    <MyEditor fetchURL={fetchURL} user={props.user} count={count} setCount={setCount}/>
                 </Route>
 
                 <Route path={`${match.path}/:country/:school/:postId`}>
@@ -42,7 +43,7 @@ export default function Document(props) {
                 </Route>
 
                 <Route path={`${match.path}/:country/:school`}>
-                    <Boardlist user={props.user} boardTitle={"파견학생 서류 제출"} fetchURL={fetchURL} />
+                    <Boardlist user={props.user} boardTitle={"파견학생 서류 제출"} fetchURL={fetchURL} count={count}/>
                 </Route>
 
                 <Route path={`${match.path}/:country`}>

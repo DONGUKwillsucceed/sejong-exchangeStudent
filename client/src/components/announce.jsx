@@ -21,6 +21,7 @@ export default function Announce(props) {
     let [context, setContext] = useState('');
     let [createdAt, setCreatedAt] = useState('');
     let [user_id, setUser_id] = useState('');
+    let [count, setCount] =useState(0);
 
     const fetchURL = props.fetchURL;
 
@@ -28,20 +29,20 @@ export default function Announce(props) {
             <Switch>
 
                 <Route path={`${match.path}/:postId/update`}>
-                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context}/>
+                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context} setCount={setCount} count={count} />
                 </Route>
 
                 <Route path={'*/write'}>
-                    <MyEditor fetchURL={fetchURL} user={props.user}/>
+                    <MyEditor fetchURL={fetchURL} user={props.user} setCount={setCount} count={count} />
                 </Route>
 
 
                 <Route path={`${match.path}/:postId`}>
-                    <Posting fetchURL={fetchURL} user={props.user} title={title} setTitle={setTitle} author={author} setAuthor={setAuthor} createdAt={createdAt}setCreatedAt={setCreatedAt} context={context} setContext={setContext} comments={comments} setComments={setComments} setUser_id={setUser_id} user_id={user_id}/>
+                    <Posting fetchURL={fetchURL} user={props.user} title={title} setTitle={setTitle} author={author} setAuthor={setAuthor} createdAt={createdAt}setCreatedAt={setCreatedAt} context={context} setContext={setContext} comments={comments} setComments={setComments} setUser_id={setUser_id} user_id={user_id} initAnnouncePosts={props.initAnnouncePosts} initQnaPosts={[]} 오른쪽다시={props.오른쪽다시} set오른쪽다시={props.set오른쪽다시} />
                 </Route>
 
                 <Route path={match.path}>
-                    <Boardlist fetchURL={fetchURL} user={props.user} boardTitle={"공지사항"} />
+                    <Boardlist fetchURL={fetchURL} user={props.user} boardTitle={"공지사항"} count={count} />
                 </Route>
 
 

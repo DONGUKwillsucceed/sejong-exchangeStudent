@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import '../styles/myEditor.css'
@@ -6,11 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
-//	게시판종류/나라/(학교id)/write  ==>글쓰기 페이지
-// content/country/(학교id)
-
-//반응형으로 일정이상 줄어들면 따라서 줄어들도록.
 
 
 
@@ -88,14 +83,7 @@ export default function MyEditor(props) {
 					}}
 					onChange={(event, editor) => {
 						setPostData(editor.getData());
-						console.log({ event, editor, postData });
 					}}
-				onBlur={(event, editor) => {
-					console.log('Blur.', editor);
-				}}
-				onFocus={(event, editor) => {
-					console.log('Focus.', editor);
-				}}
 				/>
 			</div>
 
@@ -113,6 +101,7 @@ export default function MyEditor(props) {
 				},
 					{ headers: { 'Authorization': `Bearer ${token.accessToken}` } })
 					.then((result) => {
+						props.setCount(props.count+1);
 						console.log('게시글 수정 완료');
 					})
 					.catch(() => {

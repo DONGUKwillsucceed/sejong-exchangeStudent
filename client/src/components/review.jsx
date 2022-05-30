@@ -21,6 +21,7 @@ export default function Review(props) {
     let [context, setContext] = useState('');
     let [createdAt, setCreatedAt] = useState('');
     let [user_id, setUser_id] = useState('');
+    let [count, setCount] = useState(0);
     
     let posts = [];
 
@@ -30,11 +31,11 @@ export default function Review(props) {
             <Switch>
 
                 <Route path={`${match.path}/:country/:postId/update`}>
-                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context}/>
+                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context} setCount={setCount} count={count}/>
                 </Route>
 
                 <Route path={'*/write'}>
-                    <MyEditor fetchURL={fetchURL} user={props.user}/>
+                    <MyEditor fetchURL={fetchURL} user={props.user}  setCount={setCount} count={count}/>
                 </Route>
 
                 <Route path={`${match.path}/:country/:postId`}>
@@ -42,7 +43,7 @@ export default function Review(props) {
                 </Route>
 
                 <Route path={`${match.path}/:country`}>
-                    <Boardlist user={props.user} boardTitle={"교환학생 후기"} fetchURL={fetchURL} />
+                    <Boardlist user={props.user} boardTitle={"교환학생 후기"} fetchURL={fetchURL} count={count} />
                 </Route>
 
                 <Route path={match.path}>

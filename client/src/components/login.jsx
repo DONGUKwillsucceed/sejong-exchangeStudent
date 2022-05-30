@@ -28,7 +28,7 @@ export default function Login(props) {
             <div className="loginBox">
                 <div className="inputBox2">
                     <p>학번/아이디</p>
-                    <input type="text" onChange={(e) => { setId(e.target.value); }}></input>
+                    <input type="text" value={id} onChange={(e) => { setId(e.target.value); }}></input>
                 </div>
 
                 <div className="inputBox2">
@@ -47,7 +47,6 @@ export default function Login(props) {
                 <button className="loginButton2" type="submit" onClick={() => {
                     axios.post(props.fetchURL + "/signin", { userID: id, password: pw })
                         .then((result) => {
-                            console.log(result.data);
                             props.setUser({
                                 isLogin: true,
                                 ID: result.data.userID,
@@ -57,6 +56,8 @@ export default function Login(props) {
                             });
                             localStorage.setItem("token", JSON.stringify(result.data.token));
                             localStorage.setItem("userid", JSON.stringify(result.data.id));
+                            setId('');
+                            setPw('');
                             history.goBack();
                         })
                         .catch((result) => {

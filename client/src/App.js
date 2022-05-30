@@ -61,6 +61,8 @@ function App() {
   let [initAnnouncePosts, setInitAnnouncePosts] = useState([]);
   let [initQnaPosts, setInitQnaPosts] = useState([]);
 
+  let [오른쪽다시, set오른쪽다시] = useState(false);
+
   useEffect(() => {
     axios.get(fetchURL + '/announcement/init')
       .then((result) => {
@@ -77,7 +79,7 @@ function App() {
       .catch((result) => {
         alert(result.error);
       })
-  }, [])
+  }, [오른쪽다시])
 
   let isPc = useMediaQuery({
     query: "(min-width : 1001px)"
@@ -89,8 +91,6 @@ function App() {
 
   return (
     <div className="App">
-
-
 
       {isPc ? (
 
@@ -110,15 +110,15 @@ function App() {
 
                 <Route exact path="/login"><Login user={user} setUser={setUser} fetchURL={fetchURL} /></Route>
 
-                <Route path="/announcement"><Announce user={user} fetchURL={fetchURL} /></Route>
-                <Route path="/qna"><Qna user={user} fetchURL={fetchURL} /></Route>
+                <Route path="/announcement"><Announce user={user} fetchURL={fetchURL} initAnnouncePosts={initAnnouncePosts} 오른쪽다시={오른쪽다시} set오른쪽다시={set오른쪽다시} /></Route>
+                <Route path="/qna"><Qna user={user} fetchURL={fetchURL} initQnaPosts={initQnaPosts} 오른쪽다시={오른쪽다시} set오른쪽다시={set오른쪽다시}/></Route>
 
                 <Route path="/review"><Review user={user} fetchURL={fetchURL} /></Route>
                 <Route path="/community"><Community user={user} fetchURL={fetchURL} /></Route>
 
                 <Route path="/document"><Document user={user} fetchURL={fetchURL} /></Route>
 
-                <Route path={"/myposting/" + user.id} ><MyPostings user={user} fetchURL={fetchURL} /></Route>
+                <Route path={"/myposting/" + user.id} ><MyPostings user={user} fetchURL={fetchURL} initQnaPosts={initQnaPosts} 오른쪽다시={오른쪽다시} set오른쪽다시={set오른쪽다시} initAnnouncePosts={initAnnouncePosts} /></Route>
 
               </Switch>
             </div>
@@ -156,7 +156,7 @@ function App() {
 
                   <Route exact path="/login"><Login user={user} setUser={setUser} fetchURL={fetchURL} /></Route>
 
-                  <Route path="/announcement"><Announce user={user} fetchURL={fetchURL} /></Route>
+                  <Route path="/announcement"><Announce user={user} fetchURL={fetchURL}  initAnnouncePosts={initAnnouncePosts} /></Route>
                   <Route path="/qna"><Qna user={user} fetchURL={fetchURL} /></Route>
 
                   <Route path="/review"><Review user={user} fetchURL={fetchURL} /></Route>

@@ -1,14 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import '../styles/myEditor.css'
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-
-
-
 
 export default function MyEditor(props) {
 
@@ -76,14 +71,7 @@ export default function MyEditor(props) {
 					}}
 					onChange={(event, editor) => {
 						setPostData(editor.getData());
-						console.log({ event, editor, postData });
 					}}
-				onBlur={(event, editor) => {
-					console.log('Blur.', editor);
-				}}
-				onFocus={(event, editor) => {
-					console.log('Focus.', editor);
-				}}
 				/>
 			</div>
 			<button className="submitBtn6" onClick={() => {
@@ -102,14 +90,13 @@ export default function MyEditor(props) {
 				},
 					{ headers: { 'Authorization': `Bearer ${token.accessToken}` } })
 					.then((result) => {
+						props.setCount(props.count+1);
 						console.log('게시글 저장 완료');
 					})
 					.catch(() => {
 						alert('게시글 저장 실패');
 					})
-				history.push(window.location.pathname.replace('/write', ''));
-				window.location.reload();
-				//얘도 새로고침 해야 반영해주네 아아아아아ㅏ아ㅏㄱ
+					history.push(window.location.pathname.replace('/write', ''));
 
 			}}>저장</button>
 		</div>

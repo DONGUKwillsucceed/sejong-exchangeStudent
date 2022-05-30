@@ -55,7 +55,8 @@ function Boardlist(props) {
                 console.log(result);
                 alert("데이터불러오기 실패")
             })
-    }, [country])
+    }, [country, props.count])
+
 
     function currentPosts(tmp) {
         let currentPosts = 0;

@@ -22,26 +22,28 @@ export default function Qna(props) {
     let [createdAt, setCreatedAt] = useState('');
     let [user_id, setUser_id] = useState('');
 
+    let [count, setCount] = useState(0);
+
     const fetchURL = props.fetchURL;
 
     return (
             <Switch>
 
                 <Route path={`${match.path}/:postId/update`}>
-                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context}/>
+                    <MyEditorUpdate fetchURL={fetchURL} user={props.user} titleData={title} postData={context} count={count} setCount={setCount} />
                 </Route>
 
                 <Route path={'*/write'}>
-                    <MyEditor fetchURL={fetchURL} user={props.user}/>
+                    <MyEditor fetchURL={fetchURL} user={props.user} count={count} setCount={setCount}/>
                 </Route>
 
 
                 <Route path={`${match.path}/:postId`}>
-                    <Posting fetchURL={fetchURL} user={props.user} title={title} setTitle={setTitle} author={author} setAuthor={setAuthor} createdAt={createdAt}setCreatedAt={setCreatedAt} context={context} setContext={setContext} comments={comments} setComments={setComments} setUser_id={setUser_id} user_id={user_id}/>
+                    <Posting fetchURL={fetchURL} user={props.user} title={title} setTitle={setTitle} author={author} setAuthor={setAuthor} createdAt={createdAt}setCreatedAt={setCreatedAt} context={context} setContext={setContext} comments={comments} setComments={setComments} setUser_id={setUser_id} user_id={user_id} initQnaPosts={props.initQnaPosts} initAnnouncePosts={[]} 오른쪽다시={props.오른쪽다시} set오른쪽다시={props.set오른쪽다시} />
                 </Route>
 
                 <Route path={match.path}>
-                    <Boardlist fetchURL={fetchURL} user={props.user} boardTitle={"Q&A"}/>
+                    <Boardlist fetchURL={fetchURL} user={props.user} boardTitle={"Q&A"} count={count}/>
                 </Route>
 
 
