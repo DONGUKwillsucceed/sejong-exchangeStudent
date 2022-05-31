@@ -137,6 +137,9 @@ export async function readFive() {
       select: {
         id: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     const queryResult = await db.postings.findMany({
       where: {

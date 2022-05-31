@@ -147,6 +147,9 @@ export async function readFive() {
         author: true,
         createdAt: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       take: 5,
     });
 
